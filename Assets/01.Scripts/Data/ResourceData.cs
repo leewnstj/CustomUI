@@ -1,5 +1,5 @@
 
-public class ResourceData : Data_Root
+public class ResourceData : AddData_Root
 {
     public ResourceType ResourceType { get; private set; }
 

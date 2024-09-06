@@ -1,4 +1,4 @@
-public enum ButtonEventType
+public enum ButtonEventType : byte
 {
     None = 0,
 

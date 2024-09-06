@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,6 @@ public class ResourceButton : MonoBehaviour
     private void Awake()
     {
         _button = GetComponent<Button>();
-
         _button.onClick.AddListener(ButtonEvent);
     }
 
