@@ -12,8 +12,12 @@ public static void Generate_HorizontalGroup() => CustomUIPrefabSystem.CreateCust
 public static void Generate_Panel() => CustomUIPrefabSystem.CreateCustomUIPrefab("Panel");
 [MenuItem("GameObject/Custom UI/ResourceUI", false, 1)]
 public static void Generate_ResourceUI() => CustomUIPrefabSystem.CreateCustomUIPrefab("ResourceUI");
+[MenuItem("GameObject/Custom UI/SlotPanel", false, 1)]
+public static void Generate_SlotPanel() => CustomUIPrefabSystem.CreateCustomUIPrefab("SlotPanel");
 [MenuItem("GameObject/Custom UI/UINavigation", false, 1)]
 public static void Generate_UINavigation() => CustomUIPrefabSystem.CreateCustomUIPrefab("UINavigation");
+[MenuItem("GameObject/Custom UI/UIView", false, 1)]
+public static void Generate_UIView() => CustomUIPrefabSystem.CreateCustomUIPrefab("UIView");
 [MenuItem("GameObject/Custom UI/VerticalGroup", false, 1)]
 public static void Generate_VerticalGroup() => CustomUIPrefabSystem.CreateCustomUIPrefab("VerticalGroup");
 }
