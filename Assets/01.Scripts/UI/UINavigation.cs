@@ -26,12 +26,16 @@ public class UINavigation : MonoBehaviour
             _showingUI.Pop().HideUI();
         }
 
-        _uiViews.TryGetValue(viewName, out UIView view);
+        if(_uiViews.TryGetValue(viewName, out UIView view))
+        {
+            _showingUI.Push(view);
+            view.ShowUI();
 
-        _showingUI.Push(view);
-        view.ShowUI();
+            return view;
+        }
 
-        return view;
+        Debug.LogError($"{viewName} is NULL!");
+        return null;
     }
 
     public UIView Pop()
