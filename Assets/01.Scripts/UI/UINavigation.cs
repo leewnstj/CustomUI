@@ -8,7 +8,7 @@ public class UINavigation : MonoBehaviour
     private Stack<UIView> _showingUI = new();
     private Dictionary<string, UIView> _uiViews = new();
 
-    private void Awake()
+    private void Start()
     {
         UIView[] views = GetComponentsInChildren<UIView>();
 
@@ -40,8 +40,9 @@ public class UINavigation : MonoBehaviour
 
     public UIView Pop()
     {
-        _showingUI.Pop();
-        return _showingUI.Peek();
+        _showingUI.Peek().HideUI();
+
+        return _showingUI.Pop();
     }
 
     public UIView PopTo(string viewName)
@@ -54,6 +55,8 @@ public class UINavigation : MonoBehaviour
             {
                 break;
             }
+
+            v.HideUI();
             _showingUI.Pop();
         }
 

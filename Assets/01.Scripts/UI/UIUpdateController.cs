@@ -28,4 +28,19 @@ public class UIUpdateController : MonoBehaviour
             }
         }
     }
+
+    public void OnUpdateText(UIType type, string key, string value)
+    {
+        if(_textDatas.TryGetValue(type, key, out List<Text_Binding> list))
+        {
+            foreach(Text_Binding text in list)
+            {
+                text.Text_Update(value);
+            }
+        }
+        else
+        {
+            Debug.LogError("No equivalent Text_Binding found");
+        }
+    }
 }

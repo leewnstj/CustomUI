@@ -4,32 +4,38 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    private UINavigation _uiNavigation;
+    [SerializeField]
+    private UIUpdateController _controller;
 
-    public void Show_1()
+    private void Start()
     {
-        _uiNavigation.Push("UIView_1");
+        _controller.OnUpdateText(UIType.Resource, "Coin", i.ToString());
+        _controller.OnUpdateText(UIType.Resource, "Gem", j.ToString());
     }
-    public void Show_2()
+    private int i = 0;
+    private int j = 100;
+    private void Update()
     {
-        _uiNavigation.Push("UIView_2");
-    }
-    public void Show_3()
-    {
-        _uiNavigation.Push("UIView_3");
-    }
-    public void Show_4()
-    {
-        _uiNavigation.Push("UIView_4");
-    }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            i++;
+            _controller.OnUpdateText(UIType.Resource, "Coin", i.ToString());
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            i--;
+            _controller.OnUpdateText(UIType.Resource, "Coin", i.ToString());
+        }
 
-    public void Show_NV_1()
-    {
-        UINavigationController.Navigation_Push("Panel_1");
-    }
-
-    public void Show_NV_2()
-    {
-        UINavigationController.Navigation_Push("Panel_2");
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            j++;
+            _controller.OnUpdateText(UIType.Resource, "Gem", j.ToString());
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            j--;
+            _controller.OnUpdateText(UIType.Resource, "Gem", j.ToString());
+        }
     }
 }

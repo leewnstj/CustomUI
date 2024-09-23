@@ -345,6 +345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text: {fileID: 7403171377622612764}
   _type: 1
+  _key: 
 --- !u!1 &5386565123696846328
 GameObject:
   m_ObjectHideFlags: 0
