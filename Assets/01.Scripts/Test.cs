@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Test : MonoBehaviour
@@ -16,25 +17,25 @@ public class Test : MonoBehaviour
     private int j = 100;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-            i++;
+            i += 500;
             _controller.OnUpdateText(UIType.Resource, "Coin", i.ToString());
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
-            i--;
+            i -= 500;
             _controller.OnUpdateText(UIType.Resource, "Coin", i.ToString());
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKey(KeyCode.C))
         {
-            j++;
+            j += 500;
             _controller.OnUpdateText(UIType.Resource, "Gem", j.ToString());
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Z))
         {
-            j--;
+            j -= 500;
             _controller.OnUpdateText(UIType.Resource, "Gem", j.ToString());
         }
     }

@@ -15,6 +15,6 @@ public class Text_Binding : MonoBehaviour
 
     public void Text_Update(string text)
     {
-        _text.text = text;
+        _text.ConvertNumber(text);
     }
 }

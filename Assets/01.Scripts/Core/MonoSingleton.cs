@@ -22,4 +22,9 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
             return instance;
         }
     }
+
+    protected virtual void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 }

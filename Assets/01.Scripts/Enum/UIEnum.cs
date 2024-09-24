@@ -1,4 +1,4 @@
-public enum UIType
+public enum UIType : byte
 {
     None = 0,
 
