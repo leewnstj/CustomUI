@@ -39,4 +39,9 @@ public class Test : MonoBehaviour
             _controller.OnUpdateText(UIType.Resource, "Gem", j.ToString());
         }
     }
+
+    public void SDF()
+    {
+        Debug.Log("HI");
+    }
 }

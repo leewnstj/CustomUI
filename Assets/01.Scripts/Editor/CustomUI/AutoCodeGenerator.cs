@@ -28,8 +28,6 @@ public class AutoCodeGenerator
         }
 
         var currentPrefabFiles = GetPrefabFilesInDirectory();
-        
-        var savedPrefabs = CustomUIData.LoadSavedPrefabInfo();
 
         string scriptCode = GenerateScriptCode(currentPrefabFiles);
 
@@ -37,7 +35,7 @@ public class AutoCodeGenerator
         File.WriteAllText(ScriptFilePath, scriptCode);
         AssetDatabase.Refresh();
 
-        RemoveObsoleteCode(currentPrefabFiles, savedPrefabs);
+        RemoveObsoleteCode(currentPrefabFiles);
 
         CustomUIData.SavePrefabInfo(currentPrefabFiles);
     }
@@ -116,8 +114,7 @@ public class AutoCodeGenerator
     /// 스크립트 파일에서 현재 디렉토리에 존재하지 않는 프리팹에 대한 코드 제거
     /// </summary>
     /// <param name="currentPrefabs"></param>
-    /// <param name="savedPrefabs"></param>
-    private static void RemoveObsoleteCode(List<string> currentPrefabs, List<string> savedPrefabs)
+    private static void RemoveObsoleteCode(List<string> currentPrefabs)
     {
         // 스크립트 파일이 존재하지 않으면 종료
         if (!File.Exists(ScriptFilePath))
