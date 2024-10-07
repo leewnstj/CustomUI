@@ -29,6 +29,12 @@ public class UIUpdateController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Type과 Key로 저장된 UI를 업데이트해준다.
+    /// </summary>
+    /// <param name="type">UI의 Type</param>
+    /// <param name="key">UI Key</param>
+    /// <param name="value">업데이트 해줄 내용</param>
     public void OnUpdateText(UIType type, string key, string value)
     {
         if(_textDatas.TryGetValue(type, key, out List<Text_Binding> list))

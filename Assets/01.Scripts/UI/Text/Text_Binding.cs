@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;  
 
-public class Text_Binding : MonoBehaviour
+public class Text_Binding : UIView
 {
     [Header("Component")]
     [SerializeField] private TextMeshProUGUI _text;

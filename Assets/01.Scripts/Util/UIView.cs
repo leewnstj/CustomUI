@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIView : MonoBehaviour
+public abstract class UIView : MonoBehaviour
 {
     public virtual void ShowUI()
     {
