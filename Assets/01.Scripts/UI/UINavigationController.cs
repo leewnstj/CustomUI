@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// UINavigation을 관리
+/// </summary>
 public class UINavigationController : MonoBehaviour
 {
-    private static UINavigationController _instance { get; set; }
-
     private Stack<UINavigation> _showingUI = new();
     private Dictionary<string, UINavigation> _uiNavigations = new();
 
     private void Awake()
     {
-        _instance = this;
-
         UINavigation[] uiNavigations = GetComponentsInChildren<UINavigation>();
 
         foreach (UINavigation view in uiNavigations)
@@ -22,27 +21,12 @@ public class UINavigationController : MonoBehaviour
         }
     }
 
-    public static UINavigation Navigation_Push(string navigationName)
-    {
-        return _instance.Push(navigationName);
-    }
-
-    public static void Navigation_Pop()
-    {
-        _instance.Pop();
-    }
-
-    public static UINavigation Navigation_PopTo(string navigationName)
-    {
-        return _instance.PopTo(navigationName);
-    }
-
-    public static UINavigation Navigation_PopToRoot()
-    {
-        return _instance.PopToRoot();
-    }
-
-    private UINavigation Push(string navigationName)
+    /// <summary>
+    /// 해당 네비게이션을 킨다
+    /// </summary>
+    /// <param name="navigationName">해당 네비게이션의 이름</param>
+    /// <returns></returns>
+    public UINavigation Navigation_Push(string navigationName)
     {
         if (_showingUI.Count > 0)
         {
@@ -60,7 +44,11 @@ public class UINavigationController : MonoBehaviour
         return null;
     }
 
-    private UINavigation Pop()
+    /// <summary>
+    /// 켜져있는 네비게이션을 끈다
+    /// </summary>
+    /// <returns></returns>
+    public UINavigation Navigation_Pop()
     {
         if (_showingUI.Count > 0)
         {
@@ -77,7 +65,12 @@ public class UINavigationController : MonoBehaviour
         return null;
     }
 
-    private UINavigation PopTo(string navigationName)
+    /// <summary>
+    /// 해당 네비게이션까지 켜져있는 네비게이션들을 끈다
+    /// </summary>
+    /// <param name="navigationName">해당 네비게이션의 이름</param>
+    /// <returns></returns>
+    public UINavigation Navigation_PopTo(string navigationName)
     {
         if (_uiNavigations.TryGetValue(navigationName, out UINavigation targetUI) && targetUI != null)
         {
@@ -97,7 +90,11 @@ public class UINavigationController : MonoBehaviour
         return null;
     }
 
-    private UINavigation PopToRoot()
+    /// <summary>
+    /// 가장 처음 켜졌었던 네비게이션까지 네비게이션들을 끈다
+    /// </summary>
+    /// <returns></returns>
+    public UINavigation Navigation_PopToRoot()
     {
         while (_showingUI.Count > 1)
         {

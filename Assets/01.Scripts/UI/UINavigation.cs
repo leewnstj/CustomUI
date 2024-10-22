@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// UIView 관리
+/// </summary>
 public class UINavigation : MonoBehaviour
 {
     private Stack<UIView> _showingUI = new();
@@ -19,6 +22,11 @@ public class UINavigation : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 해당 UIView 켜기
+    /// </summary>
+    /// <param name="viewName"></param>
+    /// <returns></returns>
     public UIView Push(string viewName)
     {
         if(_showingUI.Count > 0)
@@ -38,6 +46,10 @@ public class UINavigation : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// 현재 UIView 끄기
+    /// </summary>
+    /// <returns></returns>
     public UIView Pop()
     {
         _showingUI.Peek().HideUI();
@@ -45,6 +57,11 @@ public class UINavigation : MonoBehaviour
         return _showingUI.Pop();
     }
 
+    /// <summary>
+    /// 해당 UIView까지 켜져있는 UIView끄기
+    /// </summary>
+    /// <param name="viewName"></param>
+    /// <returns></returns>
     public UIView PopTo(string viewName)
     {
         _uiViews.TryGetValue(viewName, out UIView view);
@@ -57,21 +74,6 @@ public class UINavigation : MonoBehaviour
             }
 
             v.HideUI();
-            _showingUI.Pop();
-        }
-
-        return _showingUI.Peek();
-    }
-
-    public UIView PopToRoot()
-    {
-        foreach (UIView v in _showingUI)
-        {
-            if(_showingUI.Count == 1)
-            {
-                break;
-            }
-
             _showingUI.Pop();
         }
 

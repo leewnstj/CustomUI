@@ -1,7 +1,10 @@
 using TMPro;
 using UnityEngine;  
 
-public class Text_Binding : UIView
+/// <summary>
+/// 자원 텍스트 업데이트
+/// </summary>
+public class Resource_Binding : UIView, IUIUpdater
 {
     [Header("Component")]
     [SerializeField] private TextMeshProUGUI _text;
@@ -13,8 +16,8 @@ public class Text_Binding : UIView
     public UIType Type => _type;
     public string Key => _key;
 
-    public void Text_Update(string text)
+    public void UpdateHandler(object content)
     {
-        _text.ConvertNumber(text);
+        _text.ConvertNumber(content.ToString());
     }
 }

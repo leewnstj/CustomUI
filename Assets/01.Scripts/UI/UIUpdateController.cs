@@ -1,30 +1,37 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// UI 객체 업데이트 관리
+/// </summary>
 public class UIUpdateController : MonoBehaviour
 {
-    private MultiKeyDictionary<UIType, string, List<Text_Binding>> _textDatas = new();
+    /// <summary>
+    /// Key를 2개를 가지는 Dictionary
+    /// </summary>
+    private MultiKeyDictionary<UIType, string, List<IUIUpdater>> _updateDatas = new();
 
     private void Awake()
     {
-        Regist_Text();
+        Regist_UIUpdater();
     }
 
-    private void Regist_Text()
+    /// <summary>
+    /// UIView 등록하기
+    /// </summary>
+    private void Regist_UIUpdater()
     {
-        Text_Binding[] texts = GetComponentsInChildren<Text_Binding>();
+        IUIUpdater[] texts = GetComponentsInChildren<IUIUpdater>();
 
-        foreach (Text_Binding text in texts)
+        foreach (IUIUpdater text in texts)
         {
-            if (_textDatas.TryGetValue(text.Type, text.Key, out List<Text_Binding> list))
+            if (_updateDatas.TryGetValue(text.Type, text.Key, out List<IUIUpdater> list))
             {
                 list.Add(text);
             }
             else
             {
-                _textDatas.Add(text.Type, text.Key, new List<Text_Binding> { text });
+                _updateDatas.Add(text.Type, text.Key, new List<IUIUpdater> { text });
             }
         }
     }
@@ -34,19 +41,19 @@ public class UIUpdateController : MonoBehaviour
     /// </summary>
     /// <param name="type">UI의 Type</param>
     /// <param name="key">UI Key</param>
-    /// <param name="value">업데이트 해줄 내용</param>
-    public void OnUpdateText(UIType type, string key, string value)
+    /// <param name="content">업데이트 해줄 내용</param>
+    public void OnUpdateUI(UIType type, string key, object content)
     {
-        if(_textDatas.TryGetValue(type, key, out List<Text_Binding> list))
+        if(_updateDatas.TryGetValue(type, key, out List<IUIUpdater> list))
         {
-            foreach(Text_Binding text in list)
+            foreach(IUIUpdater text in list)
             {
-                text.Text_Update(value);
+                text.UpdateHandler(content);
             }
         }
         else
         {
-            Debug.LogError("No equivalent Text_Binding found");
+            Debug.LogError("No equivalent UIView found");
         }
     }
 }
